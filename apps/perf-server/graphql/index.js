@@ -6,12 +6,12 @@ import { UploadDef, UploadResolver } from "@gql-app/graphql/Upload"
 const typeDefs = [
   TestDef,
   UserDef,
-  // UploadDef
+  UploadDef
 ]
 const resolvers = [
   TestResolvers,
   UserResolver,
-  // UploadResolver
+  UploadResolver
 ]
 // For long running servers
 const schema = mergeSchemas({

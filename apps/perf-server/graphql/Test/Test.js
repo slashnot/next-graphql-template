@@ -3,7 +3,6 @@ import TestDef from './Test.gql'
 import fs from 'fs'
 import path from 'path'
 import { GraphQLScalarType, Kind } from 'graphql/index.mjs';
-import GraphQLUpload from "graphql-upload/GraphQLUpload.mjs";
 
 
 const dateScalar = new GraphQLScalarType({
@@ -47,20 +46,18 @@ const Mutation = {
   },
 
   singleUpload: async (_root, { file }) => {
-    console.log("FILE--->", file)
-    // const { name, size, type } = file
-    // const fileArrayBuffer = await file.arrayBuffer()
-    // const { ext, mime } = await fileTypeFromBuffer(fileArrayBuffer)
+    const { name, size, type } = file
+    const fileArrayBuffer = await file.arrayBuffer()
+    const { ext, mime } = await fileTypeFromBuffer(fileArrayBuffer)
 
-    // await fs.promises.writeFile(
-    //   path.join("storage", file.name),
-    //   Buffer.from(fileArrayBuffer),
-    // )
+    await fs.promises.writeFile(
+      path.join("storage", file.name),
+      Buffer.from(fileArrayBuffer),
+    )
 
-    // return { filename: name, extension: ext, mime, size, type };
-    return { filename: "some" }
+    return { filename: name, extension: ext, mime, size, type };
   },
 }
 
-const TestResolvers = { Upload: GraphQLUpload, Date: dateScalar, Query, Mutation }
+const TestResolvers = { Date: dateScalar, Query, Mutation }
 export { TestDef, TestResolvers }

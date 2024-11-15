@@ -1,28 +1,30 @@
 import { finished } from 'stream/promises'
 import { getError } from './errorCodes'
+import { fileTypeFromBuffer } from 'file-type';
 import fs from 'fs'
 import path from 'path'
 
 
-const upload = async (file, details) => {
-    const basePath = path.resolve('./storage')
+const upload = async (file, details = {}, storageDir = 'storage') => {
+    const { type = 'default', label } = details
+    const basePath = path.resolve(`./${storageDir}/${type}`)
 
     if (!fs.existsSync(basePath)) {
-        fs.mkdir(basePath, (err) => {
-            if (err)
-                return getError('UPLOAD_DIR_CREATE_ERROR')
+        await fs.promises.mkdir(basePath, { recursive: true }, (err) => {
+            if (err) return getError('UPLOAD_DIR_CREATE_ERROR')
         })
     }
 
-    const input = await file
-    const { createReadStream, filename, mimetype, encoding } = input.file
-    const stream = createReadStream()
-    const out = fs.createWriteStream(`${basePath}/${filename}`)
+    const { name, size, type: encoding } = file
+    const fileArrayBuffer = await file.arrayBuffer()
+    const { ext, mime } = await fileTypeFromBuffer(fileArrayBuffer)
 
-    stream.pipe(out)
-    await finished(out)
+    await fs.promises.writeFile(
+        path.join(basePath, label ? `${label}.${ext}` : file.name),
+        Buffer.from(fileArrayBuffer),
+    )
 
-    return { filename, mimetype, encoding, ...details }
+    return { filename: name, mimetype: mime, encoding, size, extension: ext, type, ...details }
 }
 
 export { upload }

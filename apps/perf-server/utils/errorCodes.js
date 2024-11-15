@@ -4,6 +4,10 @@ const errorCodes = {
     UPLOAD_DIR_CREATE_ERROR: {
         message: 'Error creating directory for upload',
         code: 'UPLOAD_DIR_CREATE_ERROR'
+    },
+    STORAGE_DIR_CREATE_ERROR: {
+        message: 'Error creating storage directory for upload',
+        code: 'STORAGE_DIR_CREATE_ERROR'
     }
 }
 

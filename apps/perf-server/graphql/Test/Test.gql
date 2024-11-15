@@ -11,15 +11,7 @@ type Query {
   events: [Event!]
 }
 
-type File {
-  filename: String!
-  extension: String!
-  mime: String!
-  type: String!
-  size: Int!
-}
-
-type Image {
+type TestFile {
   filename: String!
   extension: String!
   mime: String!
@@ -42,5 +34,5 @@ input TestInput {
 
 type Mutation {
   addTest(input: TestInput): Test
-  singleUpload(file: Upload!): Image!
+  singleUpload(file: Upload!): TestFile!
 }

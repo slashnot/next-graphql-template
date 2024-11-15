@@ -1,16 +1,20 @@
 scalar Upload
 
-type File {
+type UploadFile {
   filename: String!
   label: String!
   type: String!
+  mimetype: String!
+  encoding: String!
+  size: Int!
+  extension: String!
 }
 
 input FileDetails {
-  label: String!
-  type: String!
+  label: String
+  type: String
 }
 
 type Mutation {
-  uploadFile(file: Upload!, details: FileDetails): File!
+  uploadFile(file: Upload!, details: FileDetails): UploadFile!
 }
