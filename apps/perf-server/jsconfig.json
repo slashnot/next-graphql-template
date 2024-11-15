@@ -1,0 +1,14 @@
+{
+    "compilerOptions": {
+        "baseUrl": ".",
+        "paths": {
+            "@gql-app/*": ["./*"],
+        }
+    },
+    "include": [
+        "./**/*"
+    ],
+    "exclude": [
+        "node_modules"
+    ]
+}

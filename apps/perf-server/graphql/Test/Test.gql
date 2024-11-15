@@ -1,0 +1,46 @@
+# All queries and mutations for a single model
+scalar Upload
+scalar Date
+
+type Event {
+  id: ID!
+  date: Date!
+}
+
+type Query {
+  events: [Event!]
+}
+
+type File {
+  filename: String!
+  extension: String!
+  mime: String!
+  type: String!
+  size: Int!
+}
+
+type Image {
+  filename: String!
+  extension: String!
+  mime: String!
+  type: String!
+  size: Int!
+}
+
+type Test {
+  id: ID!
+  name: String
+}
+
+type Query {
+  allTests: [Test]
+}
+
+input TestInput {
+  name: String
+}
+
+type Mutation {
+  addTest(input: TestInput): Test
+  singleUpload(file: Upload!): Image!
+}

@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@perf-client/*": ["./*"],
+      "@perf-server/*": ["node_modules/@perf/server/*"]
+    }
+  }
+}
