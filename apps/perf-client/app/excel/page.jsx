@@ -18,12 +18,23 @@ const xlsxWrite = (filename) => {
     console.log("Write Success!!", jsa);
 }
 
+const xlsxRead = (filename) => {
+    const workbook = XLSX.readFile(filename, { cellStyles: true });
+    const sheet = workbook.Sheets["Sheet1"];
+
+    const jsa = XLSX.utils.sheet_to_json(sheet, {});
+    console.log("Read Success!!", jsa);
+}
+
 const ExcelPage = async () => {
-    const filename = "./public/storage/excelSheets/excelSheet.xlsx"
+    const filename = "./public/storage/excelSheets/complex.xlsx"
     // xlsxWrite(filename)
 
-    const result = excelToJson({ sourceFile: filename });
+    const result = excelToJson({
+        sourceFile: filename,
+    });
     console.log(result)
+    xlsxRead(filename)
 
     return (
         <div className="excel">

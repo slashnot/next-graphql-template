@@ -11,19 +11,19 @@ import { createYoga } from 'graphql-yoga'
 // Setup
 // ---------------------------------
 const logInput = async (resolve, root, args, context, info) => {
-    //Modify result or conditionally based on info
-    // console.debug(context)
-    return await resolve(root, args, context, info)
+  //Modify result or conditionally based on info
+  // console.debug(context)
+  return await resolve(root, args, context, info)
 }
 
-const schemaWithPermissions = applyMiddleware(schema,  logInput)
+const schemaWithPermissions = applyMiddleware(schema, permissions, logInput)
 
 
 // Using Graphql Yoga
 // ----------------------------------
 const yoga = createYoga({
-    renderGraphiQL: () => {
-        return `
+  renderGraphiQL: () => {
+    return `
           <!DOCTYPE html>
           <html lang="en">
             <body style="margin: 0; overflow-x: hidden; overflow-y: hidden">
@@ -40,12 +40,12 @@ const yoga = createYoga({
             </script>
             </body>
           </html>`
-    },
-    graphqlEndpoint: '/api/graphql',
-    schema: schemaWithPermissions,
-    context: ({ req, res }) => ({ req, res, prisma }),
-    fetchAPI: { Response },
-    plugins: []
+  },
+  graphqlEndpoint: '/api/graphql',
+  schema: schemaWithPermissions,
+  context: ({ req, res }) => ({ req, res, prisma }),
+  fetchAPI: { Response },
+  plugins: []
 })
 
 export { yoga as yogaHandler }
