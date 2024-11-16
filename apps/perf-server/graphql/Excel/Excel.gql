@@ -1,0 +1,6 @@
+type Sheet {
+  path: String!
+}
+type Query {
+  sheets: [Sheet]!
+}

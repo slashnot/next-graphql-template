@@ -5,7 +5,7 @@ import path from 'path'
 
 const upload = async (file, details = {}, storageDir = 'storage') => {
     const { type = 'default', label } = details
-    const basePath = path.resolve(`./${storageDir}/${type}`)
+    const basePath = path.resolve(`./public/${storageDir}/${type}`)
 
     // Check if dir exists and create if not
     if (!fs.existsSync(basePath)) {
