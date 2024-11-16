@@ -5,8 +5,9 @@ import { upload } from '@gql-app/utils/upload'
 const Query = {}
 
 const Mutation = {
-  uploadFile: async (_parent, { file, details }) => {
-    return upload(file, details)
+  uploadFile: async (_parent, { files, details }) => {
+    const uploadedFiles = Array.isArray(files) ? files : [files]
+    return uploadedFiles.map(file => upload(file, details))
   },
 }
 

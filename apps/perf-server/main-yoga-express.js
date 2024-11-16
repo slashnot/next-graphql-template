@@ -10,7 +10,6 @@ import { createYoga } from 'graphql-yoga'
 
 // Setup
 // ---------------------------------
-const app = express()
 const logInput = async (resolve, root, args, context, info) => {
     //Modify result or conditionally based on info
     // console.debug(context)
@@ -48,19 +47,6 @@ const yoga = createYoga({
     fetchAPI: { Response },
     plugins: []
 })
-const yogaRouter = express.Router()
-
-yogaRouter.use(
-    "/graphql",
-    graphqlUploadExpress(),
-    express.json(),
-    cors(),
-    // expressMiddleware(server, {
-    //     context: async ({ req, res }) => ({ req, res, prisma }),
-    // })
-)
-yogaRouter.use(yoga)
-app.use(yoga.graphqlEndpoint, yogaRouter)
 
 export { yoga as yogaHandler }
 

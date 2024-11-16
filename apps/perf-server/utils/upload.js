@@ -26,7 +26,7 @@ const upload = async (file, details = {}, storageDir = 'storage') => {
         // Remove Extension
         fileNameArr.splice(fileNameArr.length - 1)
 
-        const filename = label ? `${label}-${version}.${ext}` : `${fileNameArr.join('.')}-${version}`
+        const filename = label ? `${label}-${version}.${ext}` : `${fileNameArr.join('.')}-${version}.${ext}`
         const filePath = path.join(basePath, filename)
 
         // Write File

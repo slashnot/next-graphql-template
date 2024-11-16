@@ -16,5 +16,5 @@ input FileDetails {
 }
 
 type Mutation {
-  uploadFile(file: Upload!, details: FileDetails): UploadFile!
+  uploadFile(files: Upload!, details: FileDetails): [UploadFile]!
 }
