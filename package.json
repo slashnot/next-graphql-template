@@ -26,7 +26,9 @@
     "graphql-tag": "^2.12.6",
     "graphql-upload": "^17.0.0",
     "graphql-yoga": "^5.10.1",
+    "json-as-xlsx": "^2.5.6",
     "jsonwebtoken": "^9.0.2",
+    "node-cron": "^3.0.3",
     "prisma": "^5.22.0"
   },
   "keywords": [],

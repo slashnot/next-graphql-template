@@ -8,6 +8,10 @@ const errorCodes = {
     STORAGE_DIR_CREATE_ERROR: {
         message: 'Error creating storage directory for upload',
         code: 'STORAGE_DIR_CREATE_ERROR'
+    },
+    UNSUPPORTED_FILE_TYPE:{
+         message: 'The uploaded file type is not supported',
+        code: 'UNSUPPORTED_FILE_TYPE'
     }
 }
 
