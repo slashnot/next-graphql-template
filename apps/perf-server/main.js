@@ -18,7 +18,6 @@ const runScheduler = async () => {
             console.log('#                                    #')
             console.log('######################################')
             console.log('')
-            count++
             // Perform your action here
         });
     } catch (error) {

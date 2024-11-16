@@ -15,6 +15,7 @@
     "vercel-build": "prisma generate && node scripts/esbuild.build.js",
     "generate:data": "node prisma/seed/generateMockData.js",
     "db:seed": "node prisma/seed/seed.cjs",
+    "postinstall": "pnpm db:update",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
